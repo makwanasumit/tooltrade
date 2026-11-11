@@ -1,0 +1,346 @@
+/* === Extrafazant Kinetic Scroll, Cursor & Reveal Styles === */
+
+/* Typography Scale matching design doc §3 */
+.heading-xxl {
+  font-family: var(--font-heading);
+  font-size: clamp(2.9rem, 9.2vw, 8.5rem);
+  line-height: 0.86;
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+}
+
+.heading-xl {
+  font-family: var(--font-heading);
+  font-size: clamp(2.3rem, 6vw, 5.5rem);
+  line-height: 0.9;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+.heading-l {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4.4vw, 4rem);
+  line-height: 0.95;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+}
+
+.heading-m {
+  font-family: var(--font-heading);
+  font-size: clamp(1.55rem, 3vw, 2.75rem);
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.heading-s {
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 2.2vw, 2rem);
+  line-height: 1.05;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+/* Serif accent — sits inside uppercase grotesque headlines for contrast */
+.heading-alt {
+  font-family: var(--font-alt);
+  font-style: italic;
+  font-weight: 300;
+  font-variation-settings: "wght" 300;
+  text-transform: none;
+  letter-spacing: -0.03em;
+}
+
+.eyebrow-l {
+  font-size: clamp(1rem, 1.35vw, 1.25rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--theme-text-muted);
+}
+
+.eyebrow-m {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--theme-text);
+}
+
+.eyebrow-m::before {
+  content: "";
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: var(--swatch-accent);
+}
+
+.theme-dark .eyebrow-m::before {
+  background: var(--swatch-accent-glow);
+}
+
+.eyebrow-s {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+/* SplitText Reveal Masks */
+.split-mask .line,
+.split-mask .word {
+  overflow: hidden;
+}
+
+[data-text-reveal] {
+  will-change: opacity;
+}
+
+/* Draw Line SVG Box */
+.text-draw-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+[data-draw-line-box] {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.22em;
+  height: 3px;
+  pointer-events: none;
+  overflow: visible;
+}
+
+[data-draw-line-box] svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+/* Global Route Transition Spiral Overlay */
+[data-transition-wrap] {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+[data-transition-wrap][data-transition-active="true"] {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.transition__shape {
+  width: 120vmax;
+  height: 120vmax;
+  color: var(--swatch-accent);
+}
+
+.transition__svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Global Cursor Marquee Pill */
+.cursor-marquee {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9000;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.85);
+  transition:
+    opacity 0.2s ease,
+    transform 0.25s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.cursor-marquee[data-cursor-marquee-status="active"] {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.cursor-marquee__card {
+  display: flex;
+  align-items: center;
+  width: 9.5rem;
+  overflow: hidden;
+  padding: 0.45rem 0;
+  border-radius: 9999px;
+  background-color: var(--swatch-ink);
+  color: #ffffff;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 12px 30px rgba(16, 25, 35, 0.25);
+}
+
+.cursor-marquee__track {
+  display: flex;
+  flex-shrink: 0;
+  animation: cursor-marquee-scroll 4.5s linear infinite;
+}
+
+.cursor-marquee__text-span {
+  padding-right: 1.25rem;
+}
+
+@keyframes cursor-marquee-scroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Hero Cursor Cards */
+.cursor-card_media {
+  visibility: hidden;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.cursor-card_media.on {
+  visibility: visible;
+}
+
+@media (max-width: 991px), (hover: none) {
+  .cursor-card_media {
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    transform: none !important;
+  }
+  .cursor-marquee {
+    display: none !important;
+  }
+}
+
+/* 3D Stacked Card Scroll */
+[data-featured-stack-root] {
+  position: relative;
+  perspective: 1400px;
+  transform-style: preserve-3d;
+}
+
+[data-featured-stack-slide] {
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+}
+
+/* Tilted Category Showcase Cards (Services pattern) */
+@media (min-width: 992px) {
+  .services-cards_item:nth-child(3n + 1) {
+    transform: translateY(1.75rem) rotate(-3deg);
+  }
+  .services-cards_item:nth-child(3n + 2) {
+    transform: translateY(0rem) rotate(0.5deg);
+  }
+  .services-cards_item:nth-child(3n + 3) {
+    transform: translateY(1.5rem) rotate(3.5deg);
+  }
+}
+
+@media (min-width: 480px) and (max-width: 991px) {
+  .services-cards_item:nth-child(odd) {
+    transform: translateY(0.75rem) rotate(-1.5deg);
+  }
+  .services-cards_item:nth-child(even) {
+    transform: translateY(0rem) rotate(1.5deg);
+  }
+}
+
+/* Scattered 4-Column Trust/Ecosystem Grid (Team pattern) */
+.team_list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .team_list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .team_list {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 2rem;
+    align-items: start;
+  }
+  .team_item:nth-child(4n + 1) {
+    grid-column: 1 / span 2;
+    transform: translateY(0rem);
+  }
+  .team_item:nth-child(4n + 2) {
+    grid-column: 3 / span 2;
+    transform: translateY(3.5rem);
+  }
+  .team_item:nth-child(4n + 3) {
+    grid-column: 2 / span 2;
+    transform: translateY(1.5rem);
+  }
+  .team_item:nth-child(4n + 4) {
+    grid-column: 1 / span 2;
+    transform: translateY(2rem);
+  }
+}
+
+/* Footer Image Trail */
+[data-image-trail] {
+  position: relative;
+  overflow: hidden;
+}
+
+.created-trail-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6.5rem;
+  height: auto;
+  pointer-events: none;
+  will-change: transform, opacity;
+  z-index: 1;
+}
+
+/* Marquee Infinite Track */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+/* Respect Reduced Motion Strictly (WCAG 2.2 AA & PRD §10.3) */
+@media (prefers-reduced-motion: reduce) {
+  .cursor-marquee__track {
+    animation: none !important;
+  }
+  .cursor-marquee,
+  .created-trail-img {
+    display: none !important;
+  }
+  [data-text-reveal],
+  [data-scroll-reveal] {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+  }
+  .services-cards_item,
+  .team_item {
+    transform: none !important;
+  }
+}
+

@@ -1,0 +1,147 @@
+:root {
+  /* === "Ink & Paper" system: warm paper, hard ink, electric violet + volt ===
+     Inspired by bold editorial portfolio sites — flat colour, big type, hard edges.
+     Deliberately its own palette (no blue/pink/orange reuse). */
+  --swatch-canvas: #f4f2ee;
+  --swatch-surface: #ffffff;
+  --swatch-surface-muted: #ebe8e1;
+  --swatch-ink: #0f0f0f;
+  --swatch-ink-muted: #5a5750;
+  --swatch-border: #d6d1c6;
+
+  /* Brand accents */
+  --swatch-accent: #5b2bff;
+  --swatch-accent-hover: #4519e0;
+  --swatch-accent-tint: #eee9ff;
+  --swatch-accent-glow: #d6f23a;
+  --swatch-accent-card: #c9b8ff;
+
+  --swatch-coral: #ff4d2e;
+  --swatch-coral-hover: #e63c1f;
+  --swatch-coral-tint: #ffefe9;
+  --swatch-coral-glow: #ff8a6b;
+  --swatch-coral-card: #ffb199;
+
+  --swatch-volt: #d6f23a;
+  --swatch-volt-tint: #f7fcd9;
+  --swatch-volt-card: #e6f78a;
+
+  --swatch-sky: #2f6bff;
+  --swatch-sky-tint: #e8f0ff;
+  --swatch-sky-card: #bcd4ff;
+
+  --swatch-mint: #17a673;
+  --swatch-mint-tint: #e3f7ef;
+  --swatch-mint-card: #a8ecd0;
+
+  /* Dark sections */
+  --swatch-dark-bg: #0f0f0f;
+  --swatch-dark-surface: #1a1a1a;
+  --swatch-dark-surface-2: #262626;
+  --swatch-dark-ink: #f4f2ee;
+  --swatch-dark-muted: #a8a59d;
+  --swatch-dark-border: #333333;
+
+  /* Semantic Trust & Accuracy Status Swatches */
+  --status-verified-fg: #0f684b;
+  --status-verified-bg: #e6f7f0;
+  --status-verified-border: #9fdac3;
+
+  --status-exact-fg: #4519e0;
+  --status-exact-bg: #eee9ff;
+  --status-exact-border: #c9b8ff;
+
+  --status-estimated-fg: #8a4b00;
+  --status-estimated-bg: #fff4dc;
+  --status-estimated-border: #f2cf8a;
+
+  --status-heuristic-fg: #1f4fd6;
+  --status-heuristic-bg: #e8f0ff;
+  --status-heuristic-border: #bcd4ff;
+
+  --status-finding-fg: #b3261a;
+  --status-finding-bg: #fdeceb;
+  --status-finding-border: #f6b8b2;
+
+  /* Active Theme Semantic Tokens (Default = Light) */
+  --theme-bg: var(--swatch-canvas);
+  --theme-surface: var(--swatch-surface);
+  --theme-surface-muted: var(--swatch-surface-muted);
+  --theme-text: var(--swatch-ink);
+  --theme-text-muted: var(--swatch-ink-muted);
+  --theme-heading: var(--swatch-ink);
+  --theme-border: var(--swatch-border);
+  --theme-border-strong: var(--swatch-ink);
+  --theme-accent: var(--swatch-accent);
+  --theme-accent-hover: var(--swatch-accent-hover);
+  --theme-button-bg: var(--swatch-ink);
+  --theme-button-text: #ffffff;
+  --theme-selection-bg: var(--swatch-accent-glow);
+  --theme-selection-text: var(--swatch-ink);
+  --theme-shadow-hard: 5px 5px 0 var(--swatch-ink);
+
+  /* Font Stacks (Populated by next/font in layout.tsx) */
+  --font-heading: var(--font-display-loaded, "Bricolage Grotesque", system-ui, sans-serif);
+  --font-alt: var(--font-serif-loaded, "Newsreader", Georgia, serif);
+  --font-body: var(--font-body-loaded, "Inter", system-ui, sans-serif);
+  --font-mono: var(--font-mono-loaded, "JetBrains Mono", ui-monospace, monospace);
+
+  /* Radii — tighter than before; cards read as "cut paper" */
+  --radius-xs: 0.25rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1.1rem;
+  --radius-xl: 1.5rem;
+  --radius-pill: 9999px;
+
+  /* Fluid Spacing Scale (Desktop baseline) */
+  --size-2px: 0.125rem;
+  --size-4px: 0.25rem;
+  --size-8px: 0.5rem;
+  --size-12px: 0.75rem;
+  --size-16px: 1rem;
+  --size-24px: 1.5rem;
+  --size-32px: 2rem;
+  --size-40px: 2.5rem;
+  --size-48px: 3rem;
+  --size-56px: 3.5rem;
+  --size-64px: 4rem;
+  --size-72px: 4.5rem;
+  --size-80px: 5rem;
+  --size-88px: 5.5rem;
+  --size-96px: 6rem;
+  --size-104px: 6.5rem;
+  --size-112px: 7rem;
+  --size-128px: 8rem;
+  --size-160px: 10rem;
+  --size-192px: 12rem;
+
+  /* Layout */
+  --page-padding: clamp(1rem, 2.6vw, 2.5rem);
+  --grid-gap: clamp(1rem, 2vw, 2rem);
+  --nav-height: 4.75rem;
+}
+
+@media (max-width: 991px) {
+  :root {
+    --size-192px: 7.5rem;
+    --size-160px: 6.5rem;
+    --size-128px: 5.5rem;
+    --size-96px: 4.25rem;
+    --size-80px: 3.5rem;
+    --size-64px: 3rem;
+    --nav-height: 4.25rem;
+  }
+}
+
+@media (max-width: 479px) {
+  :root {
+    --size-192px: 4.5rem;
+    --size-160px: 4rem;
+    --size-128px: 3.5rem;
+    --size-96px: 3rem;
+    --size-80px: 2.5rem;
+    --size-64px: 2.25rem;
+  }
+}
+

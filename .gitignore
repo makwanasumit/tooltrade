@@ -1,0 +1,13 @@
+node_modules/
+.next/
+out/
+dist/
+coverage/
+playwright-report/
+test-results/
+.DS_Store
+.~lock.*
+*.tsbuildinfo
+next-env.d.ts
+public/workers/pdf.worker.min.mjs
+

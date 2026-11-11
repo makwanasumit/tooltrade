@@ -1,0 +1,86 @@
+/* === Multi-Theme Section Architecture & Nav Auto-Switch === */
+
+.theme-light {
+  --theme-bg: var(--swatch-canvas);
+  --theme-surface: var(--swatch-surface);
+  --theme-surface-muted: var(--swatch-surface-muted);
+  --theme-text: var(--swatch-ink);
+  --theme-text-muted: var(--swatch-ink-muted);
+  --theme-heading: var(--swatch-ink);
+  --theme-border: var(--swatch-border);
+  --theme-border-strong: var(--swatch-ink);
+  --theme-accent: var(--swatch-accent);
+  --theme-accent-hover: var(--swatch-accent-hover);
+  --theme-button-bg: var(--swatch-ink);
+  --theme-button-text: #ffffff;
+  --theme-selection-bg: var(--swatch-accent-glow);
+  --theme-selection-text: var(--swatch-ink);
+  --theme-shadow-hard: 5px 5px 0 var(--swatch-ink);
+  background-color: var(--theme-bg);
+  color: var(--theme-text);
+}
+
+.theme-dark {
+  --theme-bg: var(--swatch-dark-bg);
+  --theme-surface: var(--swatch-dark-surface);
+  --theme-surface-muted: var(--swatch-dark-surface-2);
+  --theme-text: var(--swatch-dark-ink);
+  --theme-text-muted: var(--swatch-dark-muted);
+  --theme-heading: var(--swatch-dark-ink);
+  --theme-border: var(--swatch-dark-border);
+  --theme-border-strong: var(--swatch-dark-ink);
+  --theme-accent: var(--swatch-accent-glow);
+  --theme-accent-hover: #e6ff6a;
+  --theme-button-bg: var(--swatch-accent-glow);
+  --theme-button-text: var(--swatch-dark-bg);
+  --theme-selection-bg: var(--swatch-accent);
+  --theme-selection-text: #ffffff;
+  --theme-shadow-hard: 5px 5px 0 var(--swatch-accent-glow);
+  background-color: var(--theme-bg);
+  color: var(--theme-text);
+}
+
+/* Coloured "paper" sections — flat fill, ink text */
+.theme-accent,
+.theme-coral,
+.theme-volt,
+.theme-sky,
+.theme-mint {
+  --theme-surface: #ffffff;
+  --theme-heading: var(--swatch-ink);
+  --theme-text: var(--swatch-ink);
+  --theme-button-bg: var(--swatch-ink);
+  --theme-button-text: #ffffff;
+  --theme-border: rgba(15, 15, 15, 0.18);
+  background-color: var(--theme-bg);
+  color: var(--theme-text);
+}
+
+.theme-accent { --theme-bg: var(--swatch-accent-card); --theme-text-muted: #2a1a66; }
+.theme-coral  { --theme-bg: var(--swatch-coral-card);  --theme-text-muted: #5a1f12; }
+.theme-volt   { --theme-bg: var(--swatch-volt-card);   --theme-text-muted: #3d4208; }
+.theme-sky    { --theme-bg: var(--swatch-sky-card);    --theme-text-muted: #112b66; }
+.theme-mint   { --theme-bg: var(--swatch-mint-card);   --theme-text-muted: #0f4a35; }
+
+/* Navigation Light/Dark Auto-Switch */
+.site-nav {
+  color: var(--swatch-ink);
+  background-color: rgba(244, 242, 238, 0.86);
+  border-bottom: 1.5px solid var(--swatch-ink);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition:
+    color 0.3s ease,
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.site-nav[data-nav-theme-active="dark"] {
+  color: var(--swatch-dark-ink);
+  background-color: rgba(15, 15, 15, 0.88);
+  border-bottom-color: rgba(244, 242, 238, 0.35);
+}
+
+.site-nav .nav-logo {
+  transition: color 0.3s ease;
+}
